@@ -1,0 +1,1 @@
+web: gunicorn djmarketplace.wsgi --log-file -

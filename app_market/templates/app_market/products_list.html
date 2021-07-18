@@ -1,0 +1,28 @@
+{% extends "app_market/basic.html" %}
+
+<title>{% block title %}Products{% endblock %}</title>
+
+{% block content %}
+    <h2>Products</h2>
+    {% if shop_filter %}
+    <ul style="display:flex; flex-direction: column; flex-wrap: wrap;">
+        {% for i_shop in shop_filter %}
+            <li style="list-style: none; margin-bottom: 15px; margin-right: 15px; border: 1px dotted red; padding: 10px; background: palegoldenrod">
+                <div style="color: red; font-weight: 700;">{{ i_shop }}</div>
+                <ul style="display:flex; flex-wrap: wrap; justify-content: space-around">
+                    {% for i_product in i_shop.products_set.all %}
+                        <li style="list-style: none; margin-bottom: 15px; margin-right: 15px; color: white; padding: 10px; background: mediumseagreen">
+                            <div>Product: {{ i_product.product_name }}</div>
+                            <div>Price: {{ i_product.product_price }}</div>
+                            <div>Quantity: {{ i_product.product_quantity }}</div>
+                            <a href="{% url "add_to_cart" i_product.id %}">Add to cart</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No products</p>
+    {% endif %}
+{% endblock %}

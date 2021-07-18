@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<header>
+    <a style="margin-right: 30px;" href="{% url 'products_list' %}">Main page</a>
+    {% if request.user.is_authenticated %}
+        <h1> Welcome, {{ request.user.username }}!</h1>
+        <a style="margin-right: 30px;" href="{% url 'logout' %}">Exit</a>
+        <a style="margin-right: 30px;" href="{% url 'personal_area' %}">Personal area</a>
+        <a style="margin-right: 30px;" href="{% url 'report' %}">Most popular products</a>
+    {% else %}
+        <span>To purchase or to access your personal account </span>
+        <a href="{% url 'login' %}">Log in</a>
+        <span> or </span>
+        <a href="{% url 'register' %}">register</a>
+    {% endif %}
+</header>
+{% block content %}
+{% endblock %}
+</body>
+</html>

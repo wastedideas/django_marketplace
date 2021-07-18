@@ -1,0 +1,19 @@
+{% extends "app_market/basic.html" %}
+
+<title>{% block title %}Purchase{% endblock %}</title>
+
+{% block content %}
+    <h2>Choose "{{ product_to_cart }}" quantity:</h2>
+    <style>
+        .errorlist {
+            color: red;
+            font-weight: 700;
+            list-style: none;
+        }
+    </style>
+    <form method="post">
+        {% csrf_token %}
+        {{ quantity_elements_form.as_p }}
+        <button type="submit">Add to cart</button>
+    </form>
+{% endblock %}

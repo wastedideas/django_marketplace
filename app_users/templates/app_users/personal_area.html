@@ -1,0 +1,34 @@
+{% extends "app_market/basic.html" %}
+
+
+<title>{% block title %}Personal area{% endblock %}</title>
+
+{% block content %}
+    <h2>Personal area</h2>
+
+    <div style="font-weight: 700;">Your name: {{ user.username }}</div>
+    <div style="font-weight: 700;">
+        Your balance: {{ user.balance }}
+        <a href="{% url 'top_up_balance' %}" style="color: red;">Top up balance</a>
+    </div>
+    <div style="font-weight: 700; border-bottom: 2px solid black; margin-bottom: 20px">Your status: {{ user.get_status_display }}</div>
+    <div>
+        Your cart:
+        {% if user_cart.cart_elements.all %}
+            <ul style="display:flex; flex-wrap: wrap;">
+                {% for i_cart_element in user_cart.cart_elements.all %}
+                    <li style="list-style: none; margin-bottom: 15px; margin-right: 15px; padding: 10px; border: 2px solid navy; background: lightblue;">
+                        <div>Product: {{ i_cart_element.cart_element.product_name }}</div>
+                        <div>Price: {{ i_cart_element.cart_element.product_price }}</div>
+                        <div>Quantity: {{ i_cart_element.element_quantity }}</div>
+                        <div>Shop: {{ i_cart_element.cart_element.product_shop }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div style="font-weight: 700; padding-bottom: 30px;">Total amount of your order: {{ user_cart.total_price }}</div>
+            <a href="{% url 'purchase' user_cart.id %}" style="font-weight: 700; background: red; color: white; padding: 15px;">Buy all</a>
+        {% else %}
+            <div>Your cart is empty</div>
+        {% endif %}
+    </div>
+{% endblock %}

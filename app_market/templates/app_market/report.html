@@ -1,0 +1,36 @@
+{% extends "app_market/basic.html" %}
+
+<title>{% block title %}Top Selling Items Report{% endblock %}</title>
+
+{% block content %}
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 1px solid grey;
+            width: 400px;
+        }
+        td, th {
+            border-right: 1px solid grey;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        tr:nth-of-type(2n) {
+            background: lightcyan;
+        }
+    </style>
+    <h2>Top Selling Items Report</h2>
+    <table>
+        <tr>
+            <th>Identifier</th>
+            <th>Name</th>
+            <th>Quantity</th>
+        </tr>
+        {% for i_product in data_for_report %}
+        <tr>
+            <td>{{ i_product.purchased_product__id }}</td>
+            <td>{{ i_product.purchased_product__product_name }}</td>
+            <td>{{ i_product.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "app_market/basic.html" %}
+
+<title>{% block title %}Registration{% endblock %}</title>
+
+{% block content %}
+    <h2>Registration</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}

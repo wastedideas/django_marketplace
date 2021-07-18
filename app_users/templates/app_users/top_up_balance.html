@@ -1,0 +1,12 @@
+{% extends "app_market/basic.html" %}
+
+<title>{% block title %}Top up balance{% endblock %}</title>
+
+{% block content %}
+    <h2>Top up balance</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Top up!</button>
+    </form>
+{% endblock %}
