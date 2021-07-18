@@ -20,4 +20,4 @@ Python + Django + PostgreSQL
 
 ## [Ссылка](https://django-marketplace.herokuapp.com/)
 
-![django_chat](gif/django_marketplace.gif)
+![django_marketplace](gif/django_marketplace.gif)
